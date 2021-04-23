@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move &apos;error.css&apos; to &apos;error&apos;" description="Move &apos;error.css&apos; to &apos;error&apos;" destination="src/main/resources/static/error" element1="src/main/resources/static/css/error.css" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="1" stamp="1605145542785" updateReferences="true"/>
+</session>

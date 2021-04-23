@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta charset="UTF-8">
+<title>CRM-APP</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<th:block th:replace="fragment/styles"/>  
+
+
+</head>
+
+<body>
+
+	<div class="d-flex justify-content-between">
+		<!-- SIDE BAR -->
+		<div th:replace="fragment/sidebar :: sidebar"></div>
+
+		<div id="admin-wrapper">
+			<!-- HEADER -->
+			<div th:replace="fragment/navbar :: navbar"></div>
+
+
+			<!-- CONTENT -->
+			<section id="admin-content" class="p-3" layout:fragment="content">
+			</section>
+
+		</div>
+	</div>
+	<th:block th:replace="fragment/scripts" />
+	
+</body>
+
+</html>

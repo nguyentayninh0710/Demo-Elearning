@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
+<head>
+<meta charset="UTF-8">
+<title>Categorie List</title>
+</head>
+<body>
+	<section id="admin-content" class="p-3" layout:fragment="content">
+		<h3 class="mb-3">Danh sách tiêu đề</h3>
+		<div class="row">
+			<div class="col-md-8">
+				<a th:href="@{/categorie/add}" class="btn btn-primary">Thêm mới</a>
+			</div>
+			<div class="col-md-4">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Tìm kiếm...">
+					<div class="input-group-append">
+						<span class="input-group-text" id="basic-addon2"><i
+							class="fa fa-search"></i></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<table class="table table-bordered table-hover mt-3">
+			<thead>
+				<tr>
+					<th>STT</th>					
+					<th>ID</th>
+					<th>Icon</th>
+					<th>Tiêu đề</th>			
+					<th>#</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr
+					th:if="${categories.pageList== null || #lists.isEmpty(categories.pageList)}">
+					<td colspan=9>Không có dữ liệu</td>
+				</tr>
+				<tr th:each="item,iterStat : ${categories.pageList}">
+					<td th:text="${iterStat.count}"></td>
+					<td th:text="${item.id}"></td>
+					<td > 
+						<img style="width: 50px; height: 60px" alt="" th:src="${item.ImgPath}">
+					</td>
+					<td th:text="${item.title}"></td>					
+					<td><a th:href="@{/categorie/edit(id=${item.id})}" class="btn btn-sm btn-info">
+							<i class="fa fa-pencil-square-o"></i>
+					</a> <a th:href="@{/categorie/delete(id=${item.id})}" class="btn btn-sm btn-danger"> <i
+							class="fa fa-trash-o"></i>
+					</a></td>
+				</tr>
+				
+			</tbody>
+		</table>
+		<ul class="pagination" >
+			<li
+				th:class="${currentIndex == 1}? 'page-item disabled' : 'page-item'">
+				<a class="page-link" th:href="@{/categorie}">First</a>
+			</li>
+			<li
+				th:class="${currentIndex == 1}? 'page-item disabled': 'page-item' ">
+				<a class="page-link" aria-label="Previous"
+				th:href="@{|${baseUrl}${currentIndex - 1}|}"
+				title='Go to previous page'><span aria-hidden="true">«</span> <span
+					class="sr-only">Previous</span></a>
+			</li>
+			
+			<li th:each="item : ${#numbers.sequence(beginIndex,endIndex)}"
+				th:class="${item == currentIndex ? 'page-item active' :'page-item' }">
+				<a class="page-link" th:href="@{|${baseUrl}${item}|}">
+				<span th:text='${item}'></span>
+				
+			</a>
+			</li>
+			<li
+				th:class="${currentIndex == totalPageCount}? 'page-item disabled': 'page-item'">
+				<a class="page-link" aria-label="Next"
+				th:href="@{|${baseUrl}${currentIndex + 1}|}" title='Go to next page'><span
+					aria-hidden="true">»</span> <span class="sr-only">Next</span></a>
+			</li>
+			<li
+				th:class="${currentIndex == totalPageCount}? 'page-item disabled':'page-item'">
+				<a class="page-link" th:href="@{|${baseUrl}${totalPageCount}|}">Last</a>
+			</li>
+		</ul>
+	</section>
+</body>
+</html>

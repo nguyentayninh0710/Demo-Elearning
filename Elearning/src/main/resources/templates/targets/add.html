@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<section id="admin-content" class="p-3" layout:fragment="content">
+		<h3 class="mb-4 text-center">Thêm mới mục tiêu</h3>
+		<p class="text-center" th:text=${message}></p>
+		<form method="post" th:action="@{/targets/add}" th:object="${target}">
+			<div class="row">
+				<div class="col-md-6 m-auto">	
+					<div class="form-group">
+						<input type="hidden" th:field="*{id}"
+							class="form-control" />
+					</div>			
+					<div class="form-group">
+						<label>Tiêu đề</label> <input type="text" th:field="*{title}"
+							class="form-control" placeholder="name" />
+					</div>
+					<div class="form-group">
+						<label class="col-sm-12">Bài giảng</label>
+						<div class="col-sm-12">
+							<select th:field="*{courseId}"
+								class="form-control form-control-line">
+								<option th:each="item : ${list}" th:value="${item.id}"
+									th:text="${item.title}"></option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-success">Lưu lại</button>
+						<a class="btn btn-secondary" th:href="@{/targets}">Quay lại</a>
+					</div>
+				</div>
+			</div>
+		</form>
+	</section>
+</body>
+</html>

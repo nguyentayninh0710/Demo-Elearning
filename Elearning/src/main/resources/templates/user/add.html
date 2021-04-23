@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
+<head>
+<meta charset="UTF-8">
+<title>Add User</title>
+</head>
+<body>
+	<section id="admin-content" class="p-3" layout:fragment="content">
+		<h3 class="mb-4">Thêm mới thành viên</h3>
+		<form method="post" th:action="@{/user/add}" th:object="${user}"
+			enctype="multipart/form-data">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<input type="hidden" class="form-control" th:field="*{id}" />
+					</div>
+					<div class="form-group">
+						<label>Avatar</label> <input type="file" name="fileImage"
+							id="fileImage" accept="image/png, image/jpeg" />
+					</div>
+					<!--  <div class="form-group">
+						<img id="thumbnail" alt="image review">
+					</div>-->
+					
+					<div class="form-group">
+						<label>Email</label> <input type="text" class="form-control"
+							th:field="*{email}" />
+					</div>
+
+					<div class="form-group">
+						<label>Password</label> <input type="password"
+							class="form-control" th:field="*{password}" />
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Họ và tên</label> <input type="text" class="form-control"
+							th:field="*{fullname}" />
+					</div>
+					<div class="form-group">
+						<label>Số điện thoại</label> <input type="text"
+							class="form-control" th:field="*{phone}" />
+					</div>
+					<div class="form-group">
+						<label>Địa chỉ</label> <input type="text" class="form-control"
+							th:field="*{address}" />
+					</div>
+					<div class="form-group">
+						<label class="col-sm-12">Nhóm quyền</label>
+						<div class="col-sm-12">
+							<select th:field="*{roleId}"
+								class="form-control form-control-line">
+								<option th:each="item : ${list}" th:value="${item.id}"
+									th:text="${item.name}"></option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<input type="hidden" class="form-control" th:field="*{roleName}" />
+					</div>
+
+				</div>
+				<div class="col-12 mt-3">
+					<button type="submit" class="btn btn-success">Lưu lại</button>
+					<a class="btn btn-secondary" th:href="@{/user}">Quay lại</a>
+				</div>
+			</div>
+		</form>
+	</section>
+
+</body>
+</html>

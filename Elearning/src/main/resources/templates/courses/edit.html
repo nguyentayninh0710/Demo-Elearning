@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
+<head>
+<meta charset="UTF-8">
+<title>Edit User</title>
+</head>
+<body>
+	<section id="admin-content" class="p-3" layout:fragment="content">
+		<h3 class="mb-4">Cập nhật bài giảng</h3>
+		<form method="post" th:action="@{/courses/edit}" th:object="${courses}"
+			enctype="multipart/form-data">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="form-group">
+						<input type="hidden" class="form-control" th:field="*{id}" />
+					</div>
+					<div class="form-group">
+						<label>Hình ảnh</label> <input type="file" name="fileImage"
+							id="fileImage" accept="image/png, image/jpeg" />
+					</div>
+					<div class="form-group">
+						<input type="hidden" class="form-control" th:field="*{image}" />
+					</div>
+					<!--  <div class="form-group">
+						<img id="thumbnail" alt="image review">
+					</div>-->
+					
+					<div class="form-group">
+						<label>Tiêu đề</label> <input type="text" class="form-control"
+							th:field="*{title}" />
+					</div>
+
+					<div class="form-group">
+						<label>Số bài giảng</label> <input type="text"
+							class="form-control" th:field="*{letures_count}" />
+					</div>
+					<div class="form-group">
+						<label>Thời gian</label> <input type="text" class="form-control"
+							th:field="*{hour_count}" />
+					</div>
+					<div class="form-group">
+						<label>Lượt xem</label> <input type="text"
+							class="form-control" th:field="*{view_count}" />
+					</div>
+				</div>
+				<div class="col-md-4">
+					
+					<div class="form-group">
+						<label>Giá</label> <input type="text" class="form-control"
+							th:field="*{price}" />
+					</div>
+					<div class="form-group">
+						<label>Khuyến mãi</label> <input type="text" class="form-control"
+							th:field="*{discount}" />
+					</div>
+					<div class="form-group">
+						<label>Giá giảm</label> <input type="text" class="form-control"
+							th:field="*{promotionPrice}" />
+					</div>
+								
+				</div>
+				<div class="col-md-4">				
+					<div class="form-group">
+						<label>Mô tả</label> <input type="text" class="form-control"
+							th:field="*{description}" />
+					</div>
+
+					<div class="form-group">
+						<label>Nội dung</label> <input type="text"
+							class="form-control" th:field="*{content}" />
+					</div>
+					<div class="form-group">
+						<label class="col-sm-12">Phân loại</label>
+						<div class="col-sm-12">
+							<select th:field="*{categoryId}"
+								class="form-control form-control-line">
+								<option th:each="item : ${categories}" th:value="${item.id}"
+									th:text="${item.title}"></option>
+							</select>
+						</div>
+					</div>		
+					<input type="hidden" class="form-control" th:field="*{lastUpdate}" />
+				</div>
+				<div class="col-12 mt-3">
+					<button type="submit" class="btn btn-success">Lưu lại</button>
+					<a class="btn btn-secondary" th:href="@{/courses}">Quay lại</a>
+				</div>
+			</div>
+		</form>
+	</section>
+</body>
+</html>
